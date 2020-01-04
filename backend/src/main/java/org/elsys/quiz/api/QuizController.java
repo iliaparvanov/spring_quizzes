@@ -22,11 +22,11 @@ public class QuizController {
 
     @GetMapping(path = "{id}")
     public Quiz getQuizById(@PathVariable("id") int id) {
-
+        return quizService.getQuizById(id).orElse(null);
     }
 
     @GetMapping
     public List<Quiz> getAllQuizzes() {
-
+        return quizService.getAllPeople();
     }
 }
