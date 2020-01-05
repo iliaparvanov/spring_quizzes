@@ -36,7 +36,7 @@
 			<p>Loading...</p>
 		{:then data}
 			{#each data as quiz}
-				<Quiz quiz={quiz} on:takequiz={takeQuiz}></Quiz>
+				<Quiz quiz={quiz} on:takequiz={() => {takeQuiz(quiz)}}></Quiz>
 			{/each}
 
 		{:catch error}
