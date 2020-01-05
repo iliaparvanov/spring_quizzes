@@ -5,9 +5,11 @@
 	let displayQuizList = true;
 	let current_quiz = null;
 	let quizzes;
+
+	let getQuizzesUrl = 'http://localhost:8080/api/v1/quizzes';
 	
 	let getQuizzes = async () => {
-		let response = await fetch('http://localhost:8080/api/v1/quizzes');
+		let response = await fetch(getQuizzesUrl);
 		return await response.json();
 	};
 

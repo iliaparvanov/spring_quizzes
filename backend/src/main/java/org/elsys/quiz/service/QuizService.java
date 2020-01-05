@@ -18,12 +18,8 @@ public class QuizService {
         this.quizDao = quizDao;
     }
 
-    public List<Quiz> getAllPeople(){
+    public List<Quiz> getAllQuizzes(){
         return quizDao.getAllQuizzes();
-    }
-
-    public Optional<Quiz> getQuizById(int id){
-        return quizDao.getQuizById(id);
     }
 
 }

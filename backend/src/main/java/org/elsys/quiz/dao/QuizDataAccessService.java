@@ -24,11 +24,6 @@ public class QuizDataAccessService implements QuizDao {
     }
 
     @Override
-    public Optional<Quiz> getQuizById(int id) {
-        return Optional.empty();
-    }
-
-    @Override
     public List<Quiz> getAllQuizzes() {
 
         List<Quiz> quizzes = this.jdbcTemplate.query(

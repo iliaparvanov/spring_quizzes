@@ -4,6 +4,10 @@
 	export let quiz;
 
 	let checkedAnswers = [];
+
+	let submitQuiz = async () => {
+		
+	}
 </script>
 
 {#if quiz === null || quiz === undefined}
@@ -23,10 +27,6 @@
 	{#each question.answers as answer}
 		<li>{answer.text} <input type=checkbox bind:group={checkedAnswers} value={answer.id}></li>
 	{/each}
-
-
-	{#each checkedAnswers as a}
-	{a}
-	{/each}
+	<button on:click{submitQuiz}>Submit</button>
 {/each}
 {/if}

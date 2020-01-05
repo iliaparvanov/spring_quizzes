@@ -17,14 +17,9 @@ public class QuizController {
         this.quizService = quizService;
     }
 
-    @GetMapping(path = "{id}")
-    public Quiz getQuizById(@PathVariable("id") int id) {
-        return quizService.getQuizById(id).orElse(null);
-    }
-
     @CrossOrigin(origins = "http://localhost:5000")
     @GetMapping
     public List<Quiz> getAllQuizzes() {
-        return quizService.getAllPeople();
+        return quizService.getAllQuizzes();
     }
 }
