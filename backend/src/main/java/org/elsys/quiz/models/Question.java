@@ -1,25 +1,33 @@
 package org.elsys.quiz.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
 public class Question {
     private final int id;
-    private final String name;
-    private final Quiz quiz;
+    private final String text;
+    private List<Answer> answers;
 
-    public Question(int id, String name, Quiz quiz) {
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
+
+    public Question(@JsonProperty ("id") int id, @JsonProperty("text") String text, @JsonProperty("answers") List<Answer> answers) {
         this.id = id;
-        this.name = name;
-        this.quiz = quiz;
+        this.text = text;
+        this.answers = answers;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getText() {
+        return text;
     }
 
-    public Quiz getQuiz() {
-        return quiz;
+    public List<Answer> getAnswers() {
+        return answers;
     }
 }
