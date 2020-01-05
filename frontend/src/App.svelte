@@ -4,107 +4,15 @@
 
 	let displayQuizList = true;
 	let current_quiz = null;
-	let quizzes = [
-		{
-			id: 1,
-			name: "Biology1",
-			content: [
-				{
-					question: "Which famous scientist introduced the idea of natural selection?",
-					answers: [
-						{
-							answer: "Charles Darwin",
-							is_correct: 1
-						},
-						{
-							answer: "Pesho Peshev",
-							is_correct: 0
-						},
-						{
-							answer: "Isaac Newton",
-							is_correct: 0
-						},
-						{
-							answer: "Louis Pasteur",
-							is_correct: 0
-						}
-					] 
-				},
-				{
-					question: "What are biologists interested in?",
-					answers: [
-						{
-							answer: "flora",
-							is_correct: 1
-						},
-						{
-							answer: "music",
-							is_correct: 0
-						},
-						{
-							answer: "fauna",
-							is_correct: 1
-						},
-						{
-							answer: "literature",
-							is_correct: 0
-						}
-					] 
-				},
-				{
-					question: "A person who studies biology is known as a",
-					answers: [
-						{
-							answer: "radiologist",
-							is_correct: 0
-						},
-						{
-							answer: "biologist",
-							is_correct: 1
-						},
-						{
-							answer: "scientologist",
-							is_correct: 0
-						},
-						{
-							answer: "oncologist",
-							is_correct: 0
-						}
-					] 
-				},
-				
-			]
-		},
-		{
-			id: 2,
-			name: "Math1",
-			content: [
-				{
-					question: "1+1=",
-					answers: [
-						{
-							answer: "-15",
-							is_correct: 0
-						},
-						{
-							answer: "3",
-							is_correct: 0
-						},
-						{
-							answer: "1.5",
-							is_correct: 0
-						},
-						{
-							answer: "2",
-							is_correct: 1
-						}
-					] 
-				}
-			]
-		}
-	];
+	let quizzes;
 	
-	
+	let getQuizzes = async () => {
+		let response = await fetch('http://localhost:8080/api/v1/quizzes');
+		return await response.json();
+	};
+
+	quizzes = getQuizzes();
+
 	const hideQuizList = (h) => {
 		displayQuizList = !h;
 		console.log(displayQuizList);
@@ -121,9 +29,21 @@
 </button>
 
 {#if displayQuizList}
-	{#each quizzes as quiz}
-		<Quiz quiz={quiz} on:takequiz={takeQuiz}></Quiz>
-	{/each}
+	{#if quizzes === undefined}
+		<p>Undefined</p>
+	{:else}
+		{#await quizzes}
+			<p>Loading...</p>
+		{:then data}
+			{#each data as quiz}
+				<Quiz quiz={quiz} on:takequiz={takeQuiz}></Quiz>
+			{/each}
+
+		{:catch error}
+			<p>{error.message}</p>
+
+		{/await}
+	{/if}
 {:else}
 	<ExpandedQuiz quiz={current_quiz}></ExpandedQuiz>
 {/if}

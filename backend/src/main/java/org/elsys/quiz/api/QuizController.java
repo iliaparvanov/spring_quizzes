@@ -3,10 +3,7 @@ package org.elsys.quiz.api;
 import org.elsys.quiz.models.Quiz;
 import org.elsys.quiz.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,7 @@ public class QuizController {
         return quizService.getQuizById(id).orElse(null);
     }
 
+    @CrossOrigin(origins = "http://localhost:5000")
     @GetMapping
     public List<Quiz> getAllQuizzes() {
         return quizService.getAllPeople();
