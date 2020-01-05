@@ -5,14 +5,10 @@ import org.elsys.quiz.models.Question;
 import org.elsys.quiz.models.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository("h2")
 public class QuizDataAccessService implements QuizDao {
@@ -29,7 +25,7 @@ public class QuizDataAccessService implements QuizDao {
         List<Quiz> quizzes = this.jdbcTemplate.query(
                 "SELECT Id, Name FROM Quizzes",
                 (rs, rowNum) -> {
-                    Quiz quiz = new Quiz(rs.getInt("Id"), rs.getString("Name"), new ArrayList<Question>());
+                    Quiz quiz = new Quiz(rs.getInt("Id"), rs.getString("Name"), 0, new ArrayList<Question>());
                     return quiz;
                 });
 

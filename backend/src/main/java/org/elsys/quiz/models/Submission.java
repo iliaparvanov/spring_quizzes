@@ -1,14 +1,20 @@
 package org.elsys.quiz.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
 public class Submission {
     private final int id;
     private final int score;
-    private final Quiz quiz;
+    private final int quizId;
+    private final List<Answer> answers;
 
-    public Submission(int id, int score, Quiz quiz) {
+    public Submission(@JsonProperty("id") int id, @JsonProperty("score") int score, @JsonProperty("quiz_id") int quizId, List<Answer> answers) {
         this.id = id;
         this.score = score;
-        this.quiz = quiz;
+        this.quizId = quizId;
+        this.answers = answers;
     }
 
     public int getId() {
@@ -19,7 +25,7 @@ public class Submission {
         return score;
     }
 
-    public Quiz getQuiz() {
-        return quiz;
+    public int getQuizId() {
+        return quizId;
     }
 }

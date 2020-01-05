@@ -27,10 +27,17 @@ CREATE TABLE Answers (
 
 CREATE TABLE Submissions (
     Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Score INT NOT NULL,
     QuizId INT NOT NULL,
 
     FOREIGN KEY (QuizId) REFERENCES Quizzes(Id)
+);
+
+CREATE TABLE SubmittedAnswers (
+    SubmissionId INT NOT NULL,
+    AnswerId INT NOT NULL,
+
+    PRIMARY KEY (SubmissionId, AnswerId),
+    FOREIGN KEY (AnswerId) REFERENCES Answers(Id)
 );
 
 INSERT INTO Quizzes VALUES (1, 'Biology');

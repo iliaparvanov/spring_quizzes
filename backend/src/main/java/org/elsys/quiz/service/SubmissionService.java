@@ -19,7 +19,11 @@ public class SubmissionService {
         this.submissionDao = submissionDao;
     }
 
-    public List<Submission> getAllSubmissions(){
-        return submissionDao.getAllSubmissions();
+    public List<Submission> getSubmissions(){
+        return submissionDao.getSubmissions();
     }
+
+    public List<Submission> getSubmissions(int quizId) {return submissionDao.getSubmissions(quizId);}
+
+    public boolean addSubmission(Submission submission) { return submissionDao.addSubmission(submission); }
 }

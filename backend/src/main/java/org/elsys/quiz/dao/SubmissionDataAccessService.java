@@ -1,5 +1,6 @@
 package org.elsys.quiz.dao;
 
+import org.elsys.quiz.models.Quiz;
 import org.elsys.quiz.models.Submission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,7 +19,17 @@ public class SubmissionDataAccessService implements SubmissionDao {
     }
 
     @Override
-    public List<Submission> getAllSubmissions() {
+    public List<Submission> getSubmissions() {
         return null;
+    }
+
+    @Override
+    public List<Submission> getSubmissions(int quizId) {
+        return null;
+    }
+
+    @Override
+    public boolean addSubmission(Submission submission) {
+        return false;
     }
 }
