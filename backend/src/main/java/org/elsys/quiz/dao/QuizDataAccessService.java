@@ -25,7 +25,7 @@ public class QuizDataAccessService implements QuizDao {
         List<Quiz> quizzes = this.jdbcTemplate.query(
                 "SELECT Id, Name FROM Quizzes",
                 (rs, rowNum) -> {
-                    Quiz quiz = new Quiz(rs.getInt("Id"), rs.getString("Name"), 0, new ArrayList<Question>());
+                    Quiz quiz = new Quiz(rs.getInt("Id"), rs.getString("Name"), 0, 0, new ArrayList<Question>());
                     return quiz;
                 });
 
@@ -43,6 +43,14 @@ public class QuizDataAccessService implements QuizDao {
                 question.setAnswers(answers);
             }
             quiz.setContent(questions);
+
+            //calculate total correct answers and avg correct answers
+            int correctAnswers = this.jdbcTemplate.queryForObject("SELECT Count(*) FROM Questions as q\n" +
+                            "RIGHT JOIN Answers as a ON q.Id = a.QuestionId\n" +
+                            "WHERE QuizId = ? AND a.IsCorrect = TRUE;", new Object[]{quiz.getId()}, Integer.class);
+            quiz.setTotalCorrectAnswers(correctAnswers);
+
+
         }
 
         return quizzes;

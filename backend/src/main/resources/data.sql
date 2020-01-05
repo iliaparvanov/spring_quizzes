@@ -40,6 +40,7 @@ CREATE TABLE SubmittedAnswers (
     FOREIGN KEY (AnswerId) REFERENCES Answers(Id)
 );
 
+
 INSERT INTO Quizzes VALUES (1, 'Biology');
 
 INSERT INTO Questions VALUES (1, 'Which famous scientist introduced the idea of natural selection?', 1);
@@ -53,3 +54,8 @@ INSERT INTO Answers VALUES (5, 'flora', TRUE, 2);
 INSERT INTO Answers VALUES (6, 'music', FALSE, 2);
 INSERT INTO Answers VALUES (7, 'fauna', TRUE, 2);
 INSERT INTO Answers VALUES (8, 'literature', FALSE, 2);
+
+INSERT INTO Submissions VALUES(1, 1);
+
+INSERT INTO SubmittedAnswers VALUES(1, 1);
+INSERT INTO SubmittedAnswers VALUES(1, 6);

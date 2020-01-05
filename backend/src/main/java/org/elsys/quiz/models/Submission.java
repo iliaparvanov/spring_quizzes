@@ -6,9 +6,21 @@ import java.util.List;
 
 public class Submission {
     private final int id;
-    private final int score;
+    private int score;
     private final int quizId;
-    private final List<Answer> answers;
+    private List<Answer> answers;
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
 
     public Submission(@JsonProperty("id") int id, @JsonProperty("score") int score, @JsonProperty("quiz_id") int quizId, List<Answer> answers) {
         this.id = id;
