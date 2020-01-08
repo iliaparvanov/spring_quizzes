@@ -5,13 +5,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class Submission {
-    private final int id;
-    private int score;
+    private int id;
+    private int scoredPoints;
+    private int totalPoints;
     private final int quizId;
     private List<Answer> answers;
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
+    }
+
+    public void setScoredPoints(int scoredPoints) {
+        this.scoredPoints = scoredPoints;
     }
 
     public void setAnswers(List<Answer> answers) {
@@ -22,9 +35,12 @@ public class Submission {
         return answers;
     }
 
-    public Submission(@JsonProperty("id") int id, @JsonProperty("score") int score, @JsonProperty("quiz_id") int quizId, List<Answer> answers) {
+    public Submission(@JsonProperty("id") int id, @JsonProperty("scored_points") int score,
+                      @JsonProperty("total_points") int totalPoints, @JsonProperty("quiz_id") int quizId,
+                      @JsonProperty("answers") List<Answer> answers) {
         this.id = id;
-        this.score = score;
+        this.scoredPoints = score;
+        this.totalPoints = totalPoints;
         this.quizId = quizId;
         this.answers = answers;
     }
@@ -33,8 +49,8 @@ public class Submission {
         return id;
     }
 
-    public int getScore() {
-        return score;
+    public int getScoredPoints() {
+        return scoredPoints;
     }
 
     public int getQuizId() {

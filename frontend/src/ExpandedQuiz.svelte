@@ -6,7 +6,22 @@
 	let checkedAnswers = [];
 
 	let submitQuiz = async () => {
-		
+		let submission = {
+			"id": 0,
+			"scored_points": 0,
+			"total_points": 0,
+			"quiz_id": 1,
+			"answers": [
+				{
+					"id": 1,
+					"text": "fdefe"
+				},
+				{
+					"id": 2,
+					"text": "fefe"
+				}
+			]
+		}
 	}
 </script>
 
