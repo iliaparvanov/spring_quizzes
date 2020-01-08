@@ -13,6 +13,6 @@
 			{quiz.name}
 		</h3>
 		<button on:click={takeQuiz}>
-			Take quiz
+			Take {quiz.name}
 		</button>
 	</div>

@@ -24,43 +24,6 @@ public class SubmissionDataAccessService implements SubmissionDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-//    @Override
-//    public List<Submission> getSubmissions() {
-//        List<Submission> submissions = this.jdbcTemplate.query("SELECT * FROM Submissions",
-//                (rs, rowNum) -> {
-//                    Submission submission = new Submission(rs.getInt("Id"), 0, totalPoints, rs.getInt("QuizId"), new ArrayList<Answer>());
-//                    return submission;
-//                });
-//
-//        for (Submission submission : submissions) {
-//            List<Answer> answers = this.jdbcTemplate.query(
-//                    "SELECT * FROM SubmittedAnswers as sa\n" +
-//                    "RIGHT JOIN Answers as a ON sa.AnswerId = a.Id\n" +
-//                    "WHERE sa.AnswerId IS NOT NULL AND sa.SubmissionId = ?", new Object[]{submission.getId()},
-//            (rs, rowNum) -> {
-//                return new Answer(rs.getInt("Id"), rs.getString("Text"));
-//            });
-//            submission.setAnswers(answers);
-//
-//            int correctAnswers = this.jdbcTemplate.queryForObject(
-//                    "SELECT COUNT(*) FROM SubmittedAnswers as sa\n" +
-//                    "RIGHT JOIN Answers as a ON sa.AnswerId = a.Id\n" +
-//                    "WHERE sa.AnswerId IS NOT NULL AND a.IsCorrect = TRUE AND sa.SubmissionId = ?",
-//                    new Object[]{submission.getId()},
-//                    Integer.class);
-//            submission.setScoredPoints(correctAnswers);
-//
-//
-//        }
-//
-//        return submissions;
-//    }
-//
-//    @Override
-//    public List<Submission> getSubmissions(int quizId) {
-//        return null;
-//    }
-
     @Override
     public Optional<Submission> getSubmissionById(int id) {
 
@@ -89,8 +52,6 @@ public class SubmissionDataAccessService implements SubmissionDao {
                             "INNER JOIN Answers as a ON q.Id = a.QuestionId\n" +
                             "WHERE q.QuizId = ? AND a.IsCorrect = TRUE;", new Object[]{innerSubmission.getQuizId()}, Integer.class);
                     innerSubmission.setTotalPoints(total);
-
-                    System.out.println("TOTAL POINTS: " + innerSubmission.getTotalPoints());
                     return innerSubmission;
                 });
         return Optional.ofNullable(submission);
@@ -109,7 +70,6 @@ public class SubmissionDataAccessService implements SubmissionDao {
         }
 
         for (Answer answer : submission.getAnswers()) {
-            //SUBMISSION ID BELOW IS 0, HOW TO FIX THIS???
             if (jdbcTemplate.update("INSERT INTO SubmittedAnswers VALUES (?, ?)", keyHolder.getKey(), answer.getId()) < 1) {
                 return false;
             }

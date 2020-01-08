@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5000")
 @RequestMapping("api/v1/quizzes")
 @RestController
 public class QuizController {
@@ -17,7 +18,6 @@ public class QuizController {
         this.quizService = quizService;
     }
 
-    @CrossOrigin(origins = "http://localhost:5000")
     @GetMapping
     public List<Quiz> getAllQuizzes() {
         return quizService.getAllQuizzes();

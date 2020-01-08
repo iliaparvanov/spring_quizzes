@@ -42,6 +42,7 @@ CREATE TABLE SubmittedAnswers (
 
 
 INSERT INTO Quizzes VALUES (1, 'Biology');
+INSERT INTO Quizzes VALUES (2, 'Math');
 
 INSERT INTO Questions VALUES (1, 'Which famous scientist introduced the idea of natural selection?', 1);
 INSERT INTO Answers VALUES (1, 'Charles Darwin', TRUE, 1);
@@ -54,6 +55,11 @@ INSERT INTO Answers VALUES (5, 'flora', TRUE, 2);
 INSERT INTO Answers VALUES (6, 'music', FALSE, 2);
 INSERT INTO Answers VALUES (7, 'fauna', TRUE, 2);
 INSERT INTO Answers VALUES (8, 'literature', FALSE, 2);
+
+INSERT INTO Questions VALUES (3, '1 + 1 = ?');
+INSERT INTO Answers VALUES (9, '-2', FALSE, 3);
+INSERT INTO Answers VALUES (10, '2', TRUE, 3);
+INSERT INTO Answers VALUES (11, '1', FALSE, 3);
 
 INSERT INTO Submissions VALUES(1, 1);
 

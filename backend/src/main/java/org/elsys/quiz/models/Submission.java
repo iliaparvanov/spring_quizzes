@@ -35,11 +35,11 @@ public class Submission {
         return answers;
     }
 
-    public Submission(@JsonProperty("id") int id, @JsonProperty("scored_points") int score,
+    public Submission(@JsonProperty("id") int id, @JsonProperty("scored_points") int scoredPoints,
                       @JsonProperty("total_points") int totalPoints, @JsonProperty("quiz_id") int quizId,
                       @JsonProperty("answers") List<Answer> answers) {
         this.id = id;
-        this.scoredPoints = score;
+        this.scoredPoints = scoredPoints;
         this.totalPoints = totalPoints;
         this.quizId = quizId;
         this.answers = answers;
